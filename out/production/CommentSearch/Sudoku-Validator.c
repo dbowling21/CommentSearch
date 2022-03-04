@@ -29,7 +29,7 @@ typedef struct  {
     int iValue;
 } run_param;
 
-int main(int argc, char *argv[])
+/* this comment appears before code */ int main(int argc, char *argv[])
 {
   
     FILE *fp;

@@ -6,7 +6,7 @@ import java.util.Scanner;
 public class CommentSearch {
 	
 	// toggle whether to display GUI file explorer or hardcode
-	private static boolean chooseFile = false;
+	private static boolean chooseFile = true;
 	private static File cFile;
 	
 	public static void main(String[] args) throws IOException {
@@ -20,7 +20,7 @@ public class CommentSearch {
 			cFile = fileGUI.getSelectedFile();
 		}
 		else {
-			cFile = new File("src/Sudoku-Validator.c");
+			cFile = new File("src/inputTestFile.c");
 		}
 		
 		Scanner br = new Scanner(new FileReader(cFile));
