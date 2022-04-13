@@ -23,7 +23,8 @@ void *subgrid_validator(void *param);
 
 /*This is a single line comment*/
 typedef struct  {
-    int topRow;
+  /*there are 3 comments in this line */int /*second */topRow; /* third comment starts on this line
+  but spans to a second line*/
     int bottomRow;
     int leftColumn;
     int rightColumn;
@@ -65,4 +66,4 @@ typedef struct  {
   }
   */
 }
-/* this comment is the last line of the file, in all there are 7 comments in this file */
+/* this comment is the last line of the file, in all there are 10 comments in this file */

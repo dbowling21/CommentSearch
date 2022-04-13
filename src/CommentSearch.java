@@ -32,14 +32,17 @@ public class CommentSearch {
 		while (br.hasNextLine()){
 			line = br.nextLine();
 			if (line.contains("/*")	&& line.contains("*/")){
-				counter ++;
-				comment = line.substring(line.indexOf("/*"), line.indexOf("*/") + 2);
+				while (line.contains("/*")	&& line.contains("*/")){
+					counter ++;
+					comment = line.substring(line.indexOf("/*"), line.indexOf("*/") + 2);
+					line = line.substring(line.indexOf("*/") + 2, line.length());;
+					System.out.println("Comment " + counter);
+					System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
+					System.out.println(comment + "\n");
+				}
 				
-				System.out.println("Comment " + counter);
-				System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
-				System.out.println(comment + "\n");
 			}
-			else if (line.contains("/*")){
+			if (line.contains("/*")){
 				comOpen = true;
 				comment = line.substring(line.indexOf("/*"));
 				do {
