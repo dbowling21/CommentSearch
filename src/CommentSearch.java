@@ -4,12 +4,10 @@ import java.io.*;
 
 public class CommentSearch {
 	
-	// toggle whether to display GUI file explorer or hardcode
-	private static boolean chooseFile = false;
-	private static File cFile;
-	
 	public static void main(String[] args) throws IOException {
 		
+		boolean chooseFile = true; // toggle whether to display GUI file explorer or hardcode
+		File cFile;
 		if (chooseFile){
 			JFileChooser fileGUI = new JFileChooser();
 			FileNameExtensionFilter cFilter = new FileNameExtensionFilter("c files", "c");
