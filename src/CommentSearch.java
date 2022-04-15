@@ -1,12 +1,11 @@
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import java.io.*;
-import java.util.Scanner;
 
 public class CommentSearch {
 	
 	// toggle whether to display GUI file explorer or hardcode
-	private static boolean chooseFile = true;
+	private static boolean chooseFile = false;
 	private static File cFile;
 	
 	public static void main(String[] args) throws IOException {
@@ -23,45 +22,36 @@ public class CommentSearch {
 			cFile = new File("src/inputTestFile.c");
 		}
 		
-		Scanner br = new Scanner(new FileReader(cFile));
-		int counter = 0;
-		boolean comOpen;
-		String line;
-		String comment;
+		FileReader fr = new FileReader(cFile);
+		BufferedReader br = new BufferedReader(fr);
 		
-		while (br.hasNextLine()){
-			line = br.nextLine();
-			if (line.contains("/*")	&& line.contains("*/")){
-				while (line.contains("/*")	&& line.contains("*/")){
-					counter ++;
-					comment = line.substring(line.indexOf("/*"), line.indexOf("*/") + 2);
-					line = line.substring(line.indexOf("*/") + 2, line.length());;
-					System.out.println("Comment " + counter);
+		int c;
+		int count = 0; // counter for # of comments
+		char character;
+		StringBuilder comment = new StringBuilder(); //stores the current comment
+		while((c = br.read()) != -1) //loop until end of file
+		{
+			character = (char) c;
+			if (String.valueOf(character).equals("/")){ //potential start of comment
+				character = (char) br.read();
+				if (String.valueOf(character).equals("*")){ //start of comment
+					comment.append("/*");
+					count ++;
+					do{
+						character =(char) br.read();
+						comment.append(character); //add chars to comment until comment escape
+						
+						//checks if length of comment is greater than 3 for a case where "/*/" would
+						// otherwise be recognized as a comment
+					} while (!(String.valueOf(comment.charAt(comment.length() -2)).equals("*")
+							   && String.valueOf(character).equals("/") && comment.length() > 3));
+								
+					System.out.println("Comment " + count);
 					System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
 					System.out.println(comment + "\n");
+					comment.delete(0, comment.length()); //reset comment
 				}
-				
-			}
-			if (line.contains("/*")){
-				comOpen = true;
-				comment = line.substring(line.indexOf("/*"));
-				do {
-					line = br.nextLine();
-					if (line.contains("*/")){
-						comment = comment + "\n" + line;
-						comOpen = false;
-						
-						counter ++;
-						System.out.println("Comment " + counter);
-						System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
-						System.out.println(comment + "\n");
-					}
-					else {
-						comment = comment + "\n" + line;
-					}
-				}while (comOpen);
 			}
 		}
 	}
-	
 }

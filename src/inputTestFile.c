@@ -1,9 +1,10 @@
 /*this comment is the first line of the file */
+
 #include <pthread.h>
 #include <stdio.h>
-#include <stdlib.h>
+/* /*/ #include <stdlib.h>  /*/ */
 
-
+/*/*//*/*/
 #define NUM_CHILD_THREADS 9
 
 typedef int bool;
@@ -16,12 +17,12 @@ bool col[9];
 bool row[9];
 bool subGrid[9];
 
-void *col_validator(void *param);
-void *row_validator(void *param);
+void *col_validator(void *param); /* this comment wraps to a new line and has code after and then
+ another comment*/void *row_validator(void *param); /* comment after code & wrapped comment */
 void *subgrid_validator(void *param);
 
+/*This is a /* starts a comment line comment*/
 
-/*This is a single line comment*/
 typedef struct  {
   /*there are 3 comments in this line */int /*second */topRow; /* third comment starts on this line
   but spans to a second line*/
@@ -66,4 +67,4 @@ typedef struct  {
   }
   */
 }
-/* this comment is the last line of the file, in all there are 10 comments in this file */
+/* this comment is the last line of the file, in all there are 16 comments in this file */
