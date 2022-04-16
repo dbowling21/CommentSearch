@@ -6,7 +6,7 @@ public class CommentSearch {
 	
 	public static void main(String[] args) throws IOException {
 		
-		boolean chooseFile = false; // toggle whether to display GUI file explorer or hardcode
+		boolean chooseFile = true; // toggle whether to display GUI file explorer or hardcode
 		File cFile;
 		if (chooseFile){
 			JFileChooser fileGUI = new JFileChooser();
